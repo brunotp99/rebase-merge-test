@@ -3,8 +3,8 @@ export async function create (
     reply : FastifyReply
 ) {
     
-    const createCheckInParamsSchema = z.object({
-        gymId: z.string().uuid()
+    const createSomethingBetter = z.object({
+        gymId: z.string().uuid({message: "error"})
     })
 
     const createCheckInBodySchema = z.object({
@@ -28,6 +28,6 @@ export async function create (
         userLongitude: semituide
     })
     
-    return reply.status(201).send()
-    
+    return reply.statusCode(204).send()
+     
 }
