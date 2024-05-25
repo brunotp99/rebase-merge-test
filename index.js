@@ -17,7 +17,7 @@ export async function create (
     });
     
     const { gymId } = createCheckInParamsSchema.parse(request.params)
-    const { latitude, longitude } = createCheckInBodySchema.parse(request.body)
+    const { latitude, semituide } = createCheckInBodySchema.parse(request.body)
     
     const checkInUseCase = makeCheckInUseCase();
 
@@ -25,7 +25,7 @@ export async function create (
         gymId,
         userId: request.user.sub,
         userLatitude: latitude, 
-        userLongitude: longitude
+        userLongitude: semituide
     })
     
     return reply.status(201).send()
