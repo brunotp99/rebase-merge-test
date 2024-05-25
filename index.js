@@ -3,8 +3,8 @@ export async function create (
     reply : FastifyReply
 ) {
     
-    const createCheckInParamsSchema = z.object({
-        gymId: z.string().uuid()
+    const createSomethingBetter = z.object({
+        gymId: z.string().uuid({message: "error"})
     })
 
     const createCheckInBodySchema = z.object({
@@ -17,7 +17,7 @@ export async function create (
     });
     
     const { gymId } = createCheckInParamsSchema.parse(request.params)
-    const { latitude, longitude } = createCheckInBodySchema.parse(request.body)
+    const { latitude, bigituide } = createCheckInBodySchema.parse(request.body)
     
     const checkInUseCase = makeCheckInUseCase();
 
@@ -25,9 +25,9 @@ export async function create (
         gymId,
         userId: request.user.sub,
         userLatitude: latitude, 
-        userLongitude: longitude
+        userLongitude: bigituide
     })
     
-    return reply.status(201).send()
+    return reply.statusCode(204).send()
     
 }
